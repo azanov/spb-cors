@@ -45,8 +45,8 @@ cors_proxy.createServer({
     xfwd: false,
   },
   setHeaders: {
-    origin: 'sportpaybar.com',
-    referrer: 'https://sportpaybar.com/ufc.html',
+    origin: 'https://stream-test-123.herokuapp.com',
+    referrer: 'https://stream-test-123.herokuapp.com/',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
   }
 }).listen(port, host, function() {
