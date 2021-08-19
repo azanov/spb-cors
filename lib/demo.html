@@ -108,6 +108,7 @@
 
             })
         }
+
         function fetchPage(url, callback) {
             fetch(url).then(function (data) {
                 data.text().then(function (text) {
@@ -116,13 +117,14 @@
 
             })
         }
-        fetchToken('espn2', function(token) {
-            fetchPage(decodeURIComponent(atob(token)), function(page) {
-                document.write(
-                    page
-                        .replace('<head>', '<head><style>body + div {display:none!important;}</style><script>window.open=function(){};<\/script>'))
-                        .replace(/\|hls\|/gs, '|espn2-test.herokuapp.com/https://hls|')
-                        .replace(/<script.*?>.*?(adblock_user|debugger).*?<\/script>/sg, '')
+        fetchToken('espn2', function (token) {
+            fetchPage(decodeURIComponent(atob(token)), function (page) {
+                page = page.replace('<head>',
+                    '<head><style>body + div {display:none!important;}</style><script>window.open=function(){};<\/script>'
+                    );
+                page = page.replace(/\|hls\|/gs, '|espn2-test.herokuapp.com/https://hls|');
+                page = page.replace(/<script.*?>.*?(adblock_user|debugger).*?<\/script>/sg, '')
+                document.write(page)
             })
         })
     </script>
