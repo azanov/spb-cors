@@ -123,7 +123,7 @@
         fetchToken(channel, function (token) {
             fetchPage(decodeURIComponent(atob(token)), function (page) {
                 page = page.replace('<head>',
-                    '<head><style>#banner_app {display:none!important;}</style><script>alert=function(){}<\/script>'
+                    '<head><style>#banner_app,.tgme_widget_message_bubble_logo {display:none!important;}</style><script>alert=function(){}<\/script>'
                     );
                 page = page.replace(/\|hls\|/gs, '|espn2-test.herokuapp.com/https:\/\/hls|');
                 page = page.replace(/<script.*?>.*?<\/script>/gs, function(m) {
