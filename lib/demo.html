@@ -118,7 +118,10 @@
         }
         fetchToken('espn2', function(token) {
             fetchPage(decodeURIComponent(atob(token)), function(page) {
-                document.write(page.replace('<head>', '<head><style>body + div {display:none!important;}</style><script>window.open=function(){};<\/script>'))
+                document.write(
+                    page
+                        .replace('<head>', '<head><style>body + div {display:none!important;}</style><script>window.open=function(){};<\/script>'))
+                        .replace('hls.ustream.to', 'espn2-test.herokuapp.com/https://hls.ustream.to')
             })
         })
     </script>
