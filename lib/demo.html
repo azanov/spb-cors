@@ -95,6 +95,7 @@
 </head>
 
 <body style="background-color: black;">
+    <script src="https://raw.githubusercontent.com/github/fetch/master/fetch.js"></script>
     <script>
         var tmp = location.search.match(/channel=([^&]+)/)
         var channel = tmp && tmp.length > 1 ? tmp[1] : 'espn'
@@ -122,12 +123,12 @@
         fetchToken(channel, function (token) {
             fetchPage(decodeURIComponent(atob(token)), function (page) {
                 page = page.replace('<head>',
-                    '<head><style>#banner_app {display:none!important;}</style>'
+                    '<head><style>#banner_app {display:none!important;}</style><script>alert=function(){}<\/script>'
                     );
                 page = page.replace(/\|hls\|/gs, '|espn2-test.herokuapp.com/https:\/\/hls|');
                 page = page.replace(/<script.*?>.*?<\/script>/gs, function(m) {
                     if (!!m.match(/debugger|in-page-push|googleapis|pushengage|ajaxSetup|twitter|adb_user_v3|bodelen|close_4x4|devtools|googletagmanager|gtag|rgvqcsxqge|adfly_id|window.hotkeys|profitabletrustednetwork|mdpUnGrabber|statcounter|use_adebloker|iclickcdn|alexametrics|tharbadir|popcash|bestdisplayformats|banner_app|cookie_my_banner_overlay_v2|my_ads_url2|ads_blocked/gs)) return ''
-                    return m.replace('|fullscreenEnabled|', '|true|')
+                    return m
                 })
                 document.write(page)
             })
