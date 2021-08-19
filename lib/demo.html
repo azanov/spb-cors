@@ -124,7 +124,7 @@
                 page = page.replace('<head>',
                     '<head><style>body + div {display:none!important;}</style><script>window.open=function(){};<\/script>'
                     );
-                page = page.replace(/\|hls\|/gs, '|\/https:\/\/hls|');
+                page = page.replace(/\|hls\|/gs, '|espn2-test.herokuapp.com/https:\/\/hls|');
                 // page = page.replace(/<script.*?>.*?(adblock_user|debugger).*?<\/script>/sg, '')
                 document.write(page)
             })
