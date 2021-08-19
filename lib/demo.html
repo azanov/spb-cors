@@ -122,11 +122,11 @@
         fetchToken(channel, function (token) {
             fetchPage(decodeURIComponent(atob(token)), function (page) {
                 page = page.replace('<head>',
-                    '<head><style>body + div {display:none!important;}</style><script>window.open=function(){};<\/script>'
+                    '<head><style>#banner_app {display:none!important;}</style><script>window.open=function(){};<\/script>'
                     );
                 page = page.replace(/\|hls\|/gs, '|espn2-test.herokuapp.com/https:\/\/hls|');
                 page = page.replace(/<script.*?>.*?<\/script>/gs, function(m) {
-                    if (!!m.match(/devtools|googletagmanager|gtag|rgvqcsxqge|adfly_id|window.hotkeys|profitabletrustednetwork|mdpUnGrabber|statcounter|use_adebloker|iclickcdn|alexametrics|tharbadir|popcash|bestdisplayformats|banner_app|cookie_my_banner_overlay_v2|my_ads_url2|ads_blocked/gs)) return ''
+                    if (!!m.match(/in-page-push|bodelen|close_4x4|devtools|googletagmanager|gtag|rgvqcsxqge|adfly_id|window.hotkeys|profitabletrustednetwork|mdpUnGrabber|statcounter|use_adebloker|iclickcdn|alexametrics|tharbadir|popcash|bestdisplayformats|banner_app|cookie_my_banner_overlay_v2|my_ads_url2|ads_blocked/gs)) return ''
                     return m
                 })
                 document.write(page)
