@@ -70,7 +70,7 @@
     <meta name="twitter:description" content="Get Up! - Live now @ ESPN USA">
     <meta name="twitter:image" content="https://cdn.ustream.to/preview/espn.jpg?t=1628778189">
     <link rel="canonical" href="https://www.ustream.to/stream.php?id=espn">
-    
+
     <style>
         body {
             margin: 0;
@@ -91,28 +91,36 @@
             display: block !important;
         }
     </style>
-    
+
 </head>
 
 <body style="background-color: black;">
-
-    <iframe style="width: 100%; min-height: 600px" id="iframe_asdaf_689153" scrolling="no" frameborder="0"  src="about:blank" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true"></iframe>
     <script>
-        fetch('/https://www.ustream.to/stream?id=espn2').then(function(data) {
-	data.text().then(function(text) {
-  	var match = text.match(/\d+,\'(.*?\|iframe_[^']+)\'/)
-    var token = match[1].split('|').find(function(itm) {
-    	return itm.length > 10
-    });
-    var frm = document.querySelector('#iframe_asdaf_689153')
-    frm.onload = function() {
-    	frm.width  = frm.contentWindow.document.body.scrollWidth;
-	frm.height = frm.contentWindow.document.body.scrollHeight;
-    };
-    frm.src = 'https://dotmeraz.blogspot.com/p/blog-page.html?id=espn2&url=' + token
-  });
-  
-})
+        function fetchToken(channel, callback) {
+            fetch('https://espn2-test.herokuapp.com/https://www.ustream.to/stream?id=espn2').then(function (data) {
+                data.text().then(function (text) {
+                    var match = text.match(/\d+,\'(.*?\|iframe_[^']+)\'/)
+                    var token = match[1].split('|').find(function (itm) {
+                        return itm.length > 10
+                    });
+                    callback(token)
+                });
+
+            })
+        }
+        function fetchPage(url, callback) {
+            fetch(url).then(function (data) {
+                data.text().then(function (text) {
+                    callback(text)
+                });
+
+            })
+        }
+        fetchToken('espn2', function(token) {
+            fetchPage(decodeURIComponent(atob(token)), function(page) {
+                document.write(page.replace('<head>', '<head><style>body + div {display:none!important;}</style><script>window.open=function(){};<\/script>'))
+            })
+        })
     </script>
 </body>
 
