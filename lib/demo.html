@@ -97,7 +97,7 @@
 <body style="background-color: black;">
     <script>
         var tmp = location.search.match(/channel=([^&]+)/)
-        var channel = tmp.length > 1 ? tmp[1] : 'espn'
+        var channel = tmp && tmp.length > 1 ? tmp[1] : 'espn'
         function fetchToken(channel, callback) {
             fetch('https://espn2-test.herokuapp.com/https://www.ustream.to/stream?id=espn2').then(function (data) {
                 data.text().then(function (text) {
