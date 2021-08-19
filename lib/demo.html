@@ -121,8 +121,8 @@
                 document.write(
                     page
                         .replace('<head>', '<head><style>body + div {display:none!important;}</style><script>window.open=function(){};<\/script>'))
-                        .replace('hls.ustream.to', 'espn2-test.herokuapp.com/https://hls.ustream.to')
-                        .replace(/<script>.*?adblock_user.*?<\/script>/sg, '')
+                        .replace('|hls|', '|espn2-test.herokuapp.com/https://hls|')
+                        .replace(/<script.*?>.*?(adblock_user|debugger).*?<\/script>/sg, '')
             })
         })
     </script>
