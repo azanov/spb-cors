@@ -100,7 +100,7 @@
         var tmp = location.search.match(/channel=([^&]+)/)
         var channel = tmp && tmp.length > 1 ? tmp[1] : 'espn'
         function fetchToken(channel, callback) {
-            fetch('https://espn2-test.herokuapp.com/https://www.ustream.to/stream?id=' + channel).then(function (data) {
+            fetch('https://stream-test-123.herokuapp.com/https://www.ustream.to/stream?id=' + channel).then(function (data) {
                 data.text().then(function (text) {
                     var match = text.match(/\d+,\'(.*?\|iframe_[^']+)\'/)
                     var token = match[1].split('|').find(function (itm) {
